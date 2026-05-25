@@ -34,30 +34,50 @@ kharkiv-metro-graph/
 
 ## ⚙️ Встановлення та запуск
 
+### Передумови
+
+- Python 3.9 або вище
+- На Ubuntu/Debian додатково знадобиться пакет venv: `sudo apt install python3-venv`
+
+### Крок 1. Клонувати репозиторій
+
 ```bash
-git clone <repo-url>
+git clone https://github.com/MarynaShavlak/kharkiv-metro-graph.git
 cd kharkiv-metro-graph
-
-# Створити віртуальне оточення (рекомендовано)
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-
-# Встановити залежності
-pip install -r requirements.txt
-
-# Запустити всі завдання
-python scripts/task1_network_analysis.py
-python scripts/task2_bfs_dfs.py
-python scripts/task3_dijkstra.py
-python scripts/circular_layout.py
 ```
 
-Альтернативно — встановити пакет (тоді можна імпортувати `kharkiv_metro` з будь-де):
+### Крок 2. Створити та активувати віртуальне оточення
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate    # Linux/macOS
+# .venv\Scripts\activate     # Windows
+```
+
+Після активації на початку рядка терміналу зʼявиться `(.venv)`.
+
+### Крок 3. Встановити пакет у режимі editable
 
 ```bash
 pip install -e .
 ```
 
+Ця команда читає `pyproject.toml`, встановлює всі залежності (`networkx`, `matplotlib`, `numpy`) і реєструє `kharkiv_metro` як імпортований пакет. Прапор `-e` означає, що пакет ставиться як посилання на твої файли — зміни в коді одразу підхоплюються без переустановки.
+
+### Крок 4. Запустити скрипти
+
+```bash
+python scripts/task1_network_analysis.py    # Завдання 1: аналіз мережі + планарність
+python scripts/task2_bfs_dfs.py             # Завдання 2: порівняння BFS і DFS
+python scripts/task3_dijkstra.py            # Завдання 3: алгоритм Дейкстри
+python scripts/circular_layout.py           # Бонус: альтернативна кругова схема
+```
+
+Кожен скрипт виводить результати в термінал і зберігає згенеровані PNG у папці `images/`.
+
+### Деактивація
+
+Коли закінчиш — `deactivate` (виходить з venv).
 ---
 
 ## 🎯 Завдання 1. Побудова графа та аналіз мережі
